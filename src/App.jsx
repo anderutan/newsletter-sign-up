@@ -1,8 +1,10 @@
+import Newsletter from './components/Newsletter';
+
 function App() {
   return (
-    <>
-      <p>test</p>
-    </>
+    <div className='w-full'>
+      <Newsletter />
+    </div>
   );
 }
 
