@@ -58,9 +58,16 @@ export default function Newsletter() {
               </li>
             </ul>
             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
-              <label htmlFor='email' className='text-xs font-bold mb-2'>
-                Email Address
-              </label>
+              <div className='mb-2 flex justify-between'>
+                <label htmlFor='email' className='text-xs font-bold '>
+                  Email Address
+                </label>
+                {errors.email && (
+                  <span className=' text-red-500 text-xs font-semibold'>
+                    Valid email required
+                  </span>
+                )}
+              </div>
               <input
                 id='email'
                 {...register('email', {
@@ -68,13 +75,11 @@ export default function Newsletter() {
                   pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                 })}
                 placeholder='email@company.com'
-                className='border-[1px] border-slate-400 placeholder-slate-400 p-4 rounded-lg mb-5 '
+                className={`border-[1px] border-slate-400 focus:placeholder-slate-400 p-4 rounded-lg mb-5 ${
+                  errors.email &&
+                  'border-red-500 bg-red-100 text-red-600 placeholder-inherit focus:bg-white focus:text-inherit'
+                }`}
               />
-              {errors.email && (
-                <span className='-mt-5 mb-5 text-red-500 text-sm font-semibold'>
-                  Invalid email format
-                </span>
-              )}
 
               <input
                 type='submit'
